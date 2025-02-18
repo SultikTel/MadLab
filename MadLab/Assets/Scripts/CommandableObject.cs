@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovableObject : MonoBehaviour
+public class CommandableObject : MonoBehaviour, IClickable
 {
     public List<Effect> effects;
     public Rigidbody2D rb;
@@ -24,6 +24,11 @@ public class MovableObject : MonoBehaviour
     {
         yield return new WaitForSeconds(effect.delay);
         effect.Apply(this);
+    }
+
+    public void OnClick()
+    {
+        Debug.Log("Im clicked");
     }
 }
 

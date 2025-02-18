@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 
-[System.Serializable]
 public class Effect
 {
     public float delay;
 
-    public virtual void Apply(MovableObject movable)
+    public virtual void Apply(CommandableObject movable)
     {
         Debug.Log("MADE");
     }
@@ -21,7 +20,7 @@ public class Force:Effect
     public float strength;
     public Vector2 direction;
                 
-    public override void Apply(MovableObject movable)
+    public override void Apply(CommandableObject movable)
     {
         base.Apply(movable);
         if (movable.rb != null)
@@ -46,4 +45,18 @@ public class Scale : Effect
     {
         this.strength = strength;
     }
+}
+
+public class Phase : Effect
+{
+    public float duration;
+
+    public Phase(float duration, float delay) : base(delay)
+    {
+        this.duration = duration;
+    }
+}
+public interface IClickable
+{
+    public void OnClick();
 }

@@ -6,7 +6,7 @@ public class ButtonController : MonoBehaviour
 {
     [SerializeField] private Button startGame;
     [SerializeField] private List<Button> effectsButtons;
-    [SerializeField] private MovableObject hero;
+    [SerializeField] private CommandableObject hero;
 
     private void OnEnable()
     {
