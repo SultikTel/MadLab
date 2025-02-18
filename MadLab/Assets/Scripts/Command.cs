@@ -1,21 +1,31 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class Effect
+[System.Serializable]
+public class Command
 {
-    public float delay;
-
+    private float delay;
+    public float Delay
+    {
+        set => delay = Mathf.Clamp(value, minDelay, maxDelay);
+        get => delay;
+    }
+    public float minDelay=0;
+    public float maxDelay=10;
+    public Sprite image;
+    public List<Indicator> indicators;
     public virtual void Apply(CommandableObject movable)
     {
         Debug.Log("MADE");
     }
 
-    public Effect(float delay)
+    public Command(float delay)
     {
-        this.delay = delay;
+        Delay = delay;
     }
 }
 
-public class Force:Effect
+public class Force:Command
 {
     public float strength;
     public Vector2 direction;
@@ -37,7 +47,7 @@ public class Force:Effect
 
 }
 
-public class Scale : Effect
+public class Scale : Command
 {
     public float strength;
 
@@ -47,7 +57,7 @@ public class Scale : Effect
     }
 }
 
-public class Phase : Effect
+public class Phase : Command
 {
     public float duration;
 

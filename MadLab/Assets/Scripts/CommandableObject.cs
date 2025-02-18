@@ -1,34 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CommandableObject : MonoBehaviour, IClickable
 {
-    public List<Effect> effects;
+    public List<Command> commands;
     public Rigidbody2D rb;
+    public Action<CommandableObject> clicked;
 
-    private void Start()
-    {
-    }
-
-    public void ApplyAll()
+    public void ApplyAllCommands()
     {
         rb.bodyType = RigidbodyType2D.Dynamic;
-        for (int i = 0; i < effects.Count; i++)
+        for (int i = 0; i < commands.Count; i++)
         {
-            StartCoroutine(StartWithDelay(effects[i]));
+            StartCoroutine(StartWithDelay(commands[i]));
         }
     }
 
-    public IEnumerator StartWithDelay(Effect effect)
+    public IEnumerator StartWithDelay(Command effect)
     {
-        yield return new WaitForSeconds(effect.delay);
+        yield return new WaitForSeconds(effect.Delay);
         effect.Apply(this);
     }
 
     public void OnClick()
     {
-        Debug.Log("Im clicked");
+        clicked?.Invoke(this);
     }
 }
 

@@ -1,22 +1,19 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
-    [SerializeField] private Button startGame;
-    [SerializeField] private List<Button> effectsButtons;
-    [SerializeField] private CommandableObject hero;
+    [SerializeField] private GameConfigurationPanel gameConfigurationPanel;
+    public Action<Command> commandAdded;
+    public Action startPressed;
 
     private void OnEnable()
     {
-        startGame.onClick.AddListener(() => hero.ApplyAll());
-        foreach (Button button in effectsButtons)
+        foreach (CommandAddButton button in gameConfigurationPanel.commandAddButtons)
         {
-            button.onClick.AddListener(() => {
-                hero.effects.Add(new Force(10, new Vector2(1, 1),3f));
-                hero.effects.Add(new Force(15, new Vector2(0, 1),5f));
-            });
+            button.button.onClick.AddListener(() =>commandAdded?.Invoke(button.command));
         }
+        gameConfigurationPanel.startButton.onClick.AddListener(() => startPressed?.Invoke());
     }
 }

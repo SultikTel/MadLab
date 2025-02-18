@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class AngleIndicator : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
+public class AngleIndicator : Indicator, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
     [SerializeField] private RectTransform background;
     [SerializeField] private RectTransform handle;
