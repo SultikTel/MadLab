@@ -2,7 +2,7 @@
 {
     public class IntIndicatorWrapper : IndicatorWrapper
     {
-        private Indicator<int> indicator = new Indicator<int>();
+        protected Indicator<int> indicator;
 
         public override object GetIndicator() => indicator;
     }

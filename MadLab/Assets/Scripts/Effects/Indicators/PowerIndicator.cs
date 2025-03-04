@@ -1,12 +1,14 @@
 ﻿using MadLab.Effects;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace MadLab.UI
 {
-    public class PowerIndicator : FloatIndicatorWrapper
+    public class PowerIndicator : IntIndicatorWrapper
     {
         [SerializeField] private Slider slider;
+        [SerializeField] private TMP_Text valueText;
 
         private void OnEnable()
         {
@@ -20,6 +22,8 @@ namespace MadLab.UI
 
         private void OnSliderValueChanged(float value)
         {
+            indicator.Value = (int)value;
+            valueText.text = value.ToString("F2");
             Debug.Log($"Slider Value Changed: {value}");
         }
     }

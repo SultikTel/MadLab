@@ -15,8 +15,10 @@ MonoBehaviour:
   delay: 0
   maxDelay: 10
   minDelay: 0
-  indicators: []
+  indicators:
+  - {fileID: 2942881777856783413, guid: 2502808cdace50149a5b1a5d6de8a4e0, type: 3}
+  - {fileID: 6888102499285376000, guid: f86d386cd3e66774482a31b649e2fc95, type: 3}
   strength: 1
   direction: {x: 0, y: 0}
-  maxStrength: 0
-  minStrength: 0
+  maxStrength: 100
+  minStrength: 1
